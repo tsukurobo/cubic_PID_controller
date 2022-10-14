@@ -1,9 +1,8 @@
 #pragma once
 #include "Cubic1.7.h"
 #include <limits.h>
-#include "MovingAverage.h"
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.10;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.11;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;

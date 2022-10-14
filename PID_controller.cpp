@@ -1,4 +1,4 @@
-#include "pid_controller.h"
+#include "PID_controller.h"
 
 PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target )
     : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target)
