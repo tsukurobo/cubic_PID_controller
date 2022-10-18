@@ -13,7 +13,18 @@ void setup()
 
 void loop()
 {
-    static PID_controller controller(encoder,motor,200,0.3,0.0003,0.003,200.0);
-    controller.compute(false, true);
-    delay(4);
+    static int i = 0;
+    static PID_controller controller(encoder,motor,200,0.003,0.000003,0.000003,-5000.0, false);
+    controller.compute(true, true);
+    Cubic_motor::send();
+
+    if(i==200){
+        controller.setTarget(5000.0);
+        i = -200;
+    }
+    if(i==0){
+        controller.setTarget(2000.0);
+    }
+        i++;
+    delay(50);
 }

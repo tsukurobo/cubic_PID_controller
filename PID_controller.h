@@ -2,7 +2,7 @@
 #include "Cubic1.7.h"
 #include <limits.h>
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.11;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.12;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;
@@ -37,6 +37,8 @@ private:
     int encoderVal;
     int preEncoderVal;
 
+    bool direction;
+
 public:
     /**
      * @brief コントローラのコンストラクタ
@@ -48,8 +50,9 @@ public:
      * @param Ki 積分ゲイン
      * @param Kd 微分ゲイン
      * @param target 目標回転速度。省略可能（デフォルトは0）
+     * @param direction 方向。省略可能（デフォルトはtrue） falseにすると逆回転になります。
      */
-    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0);
+    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool direction = true);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。

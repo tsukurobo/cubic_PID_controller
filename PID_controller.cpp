@@ -1,7 +1,7 @@
 #include "PID_controller.h"
 
-PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target )
-    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target)
+PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction )
+    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target), direction(direction)
 {
   preMicros = micros();
   preDiff = 0;
@@ -30,9 +30,16 @@ int PID_controller::compute(const bool ifPut, const bool ifPrint)
   double diff = target - velocity;
   preEncoderVal = encoderVal;
 
+  if(!direction){
+  diff *= -1.0;
+  }
+
   /* Compute duty */
   integral += (diff + preDiff) * dt / 2.0;
   duty += Kp * diff + Ki * integral + Kd * (diff - preDiff) / dt;
+    Serial.print("duty: ");
+    Serial.print(duty);
+    Serial.print(",");
 
   duty = dutyLimiter();
 
