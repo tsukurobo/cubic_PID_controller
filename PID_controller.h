@@ -37,6 +37,8 @@ private:
     int encoderVal;
     int preEncoderVal;
 
+    int PPR;
+
     bool direction;
 
 public:
@@ -50,9 +52,10 @@ public:
      * @param Ki 積分ゲイン
      * @param Kd 微分ゲイン
      * @param target 目標回転速度。省略可能（デフォルトは0）
-     * @param direction 方向。省略可能（デフォルトはtrue） falseにすると逆回転になります。
+     * @param direction エンコーダの回転方向。省略可能（デフォルトはtrue） falseにすると逆回転であるとして設定されます。
+     * @param PPR エンコーダのPPR。省略可能（デフォルトは-1) -1は未設定を示します。
      */
-    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool direction = true);
+    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool direction = true, int PPR = -1);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
@@ -80,6 +83,21 @@ public:
     void setTarget(int target);
 
     /**
+     * @brief 目標とする回転速度を、秒間回転数で指定する。
+     *
+     * @param target 回転速度（秒間回転数）
+     * @return int PPRが未設定のとき-1が返り、目標回転速度は変更されない。
+     */
+    int setTargetRotationPerSecond(double target);
+
+    /**
+     * @brief エンコーダの分解能を設定する
+     *
+     * @param PPR 分解能
+     */
+    void setPPR(int PPR);
+
+    /**
      * @brief Duty比の取得
      * @details この関数は、compute()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
      *
@@ -97,6 +115,17 @@ inline void PID_controller::setGains(const double Kp, const double Ki, const dou
 inline void PID_controller::setTarget(const int target)
 {
     this->target = target;
+}
+inline int PID_controller::setTargetRotationPerSecond(const double target)
+{
+    if (PPR == -1)
+        return -1;
+    this->target = target * PPR;
+    return 0;
+}
+inline void PID_controller::setPPR(const int PPR)
+{
+    this->PPR = PPR;
 }
 inline int PID_controller::getDuty() const
 {
