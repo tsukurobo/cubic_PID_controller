@@ -2,7 +2,7 @@
 #include "Cubic1.7.h"
 #include <limits.h>
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.12;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.141;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;

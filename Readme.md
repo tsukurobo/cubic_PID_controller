@@ -7,6 +7,8 @@
 
 ## Update history
 
+- ver 0.141
+  - プログラム内のバージョン番号を修正。
 - ver 0.14
   - compute()内でifPrint==falseの時にも一部のログが出力されていたバグを修正
 - ver 0.13
