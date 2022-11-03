@@ -1,7 +1,7 @@
 #include "PID_controller.h"
 
-PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction , int PPR)
-    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target), direction(direction), PPR(PPR)
+PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target, bool encoderDirection , int PPR)
+    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target), direction(encoderDirection), PPR(PPR)
 {
   preMicros = micros();
   preDiff = 0;

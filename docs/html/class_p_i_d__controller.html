@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.141</span>
+   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.142</span>
    </div>
   </td>
  </tr>
@@ -91,9 +91,9 @@ $(document).ready(function(){initNavTree('class_p_i_d__controller.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa217322f72d93458b12ee16e2253e5a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d__controller.html#aa217322f72d93458b12ee16e2253e5a2">PID_controller</a> (<a class="el" href="class_cubic__encoder.html">Cubic_encoder</a> &amp;encoder, <a class="el" href="class_cubic__motor.html">Cubic_motor</a> &amp;motor, int capableDuty, double Kp, double Ki, double Kd, double target=0, bool direction=true, int PPR=-1)</td></tr>
-<tr class="memdesc:aa217322f72d93458b12ee16e2253e5a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">コントローラのコンストラクタ  <a href="class_p_i_d__controller.html#aa217322f72d93458b12ee16e2253e5a2">More...</a><br /></td></tr>
-<tr class="separator:aa217322f72d93458b12ee16e2253e5a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c26eee973adb4c05b4d3f3466e3984"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d__controller.html#a17c26eee973adb4c05b4d3f3466e3984">PID_controller</a> (<a class="el" href="class_cubic__encoder.html">Cubic_encoder</a> &amp;encoder, <a class="el" href="class_cubic__motor.html">Cubic_motor</a> &amp;motor, int capableDuty, double Kp, double Ki, double Kd, double target=0, bool encoderDirection=true, int PPR=-1)</td></tr>
+<tr class="memdesc:a17c26eee973adb4c05b4d3f3466e3984"><td class="mdescLeft">&#160;</td><td class="mdescRight">コントローラのコンストラクタ  <a href="class_p_i_d__controller.html#a17c26eee973adb4c05b4d3f3466e3984">More...</a><br /></td></tr>
+<tr class="separator:a17c26eee973adb4c05b4d3f3466e3984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e58236aa27d35831a77f23c9ea2426"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d__controller.html#a02e58236aa27d35831a77f23c9ea2426">compute</a> (bool ifPut=true, bool ifPrint=false)</td></tr>
 <tr class="memdesc:a02e58236aa27d35831a77f23c9ea2426"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。  <a href="class_p_i_d__controller.html#a02e58236aa27d35831a77f23c9ea2426">More...</a><br /></td></tr>
 <tr class="separator:a02e58236aa27d35831a77f23c9ea2426"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,8 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3a764e858ca617792fb63c8bd32939fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa217322f72d93458b12ee16e2253e5a2" name="aa217322f72d93458b12ee16e2253e5a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa217322f72d93458b12ee16e2253e5a2">&#9670;&nbsp;</a></span>PID_controller()</h2>
+<a id="a17c26eee973adb4c05b4d3f3466e3984" name="a17c26eee973adb4c05b4d3f3466e3984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17c26eee973adb4c05b4d3f3466e3984">&#9670;&nbsp;</a></span>PID_controller()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +166,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>direction</em> = <code>true</code>, </td>
+          <td class="paramname"><em>encoderDirection</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -187,12 +187,12 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">encoder</td><td>エンコーダーの参照。コンストラクタが呼び出される前にbegin()されている必要がある。（コンストラクタ呼び出し時に値を読み込む仕様のため） </td></tr>
     <tr><td class="paramname">motor</td><td>モーターの参照。 </td></tr>
-    <tr><td class="paramname">capableDuty</td><td>出力最大Duty比。0~255の範囲で指定する。 </td></tr>
+    <tr><td class="paramname">capableDuty</td><td>出力最大Duty比（絶対値）。0~255の範囲で指定する。 </td></tr>
     <tr><td class="paramname">Kp</td><td>比例ゲイン </td></tr>
     <tr><td class="paramname">Ki</td><td>積分ゲイン </td></tr>
     <tr><td class="paramname">Kd</td><td>微分ゲイン </td></tr>
     <tr><td class="paramname">target</td><td>目標回転速度。省略可能（デフォルトは0） </td></tr>
-    <tr><td class="paramname">direction</td><td>エンコーダの回転方向。省略可能（デフォルトはtrue） falseにすると逆回転であるとして設定されます。 </td></tr>
+    <tr><td class="paramname">encoderDirection</td><td>モーターに正のdutyを与えて回した際に、エンコーダーの値がプラスになるかどうか。省略可能（デフォルトはtrue） </td></tr>
     <tr><td class="paramname">PPR</td><td>エンコーダのPPR。省略可能（デフォルトは-1) -1は未設定を示します。 </td></tr>
   </table>
   </dd>

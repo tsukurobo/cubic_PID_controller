@@ -1,6 +1,6 @@
 var class_p_i_d__controller =
 [
-    [ "PID_controller", "class_p_i_d__controller.html#aa217322f72d93458b12ee16e2253e5a2", null ],
+    [ "PID_controller", "class_p_i_d__controller.html#a17c26eee973adb4c05b4d3f3466e3984", null ],
     [ "compute", "class_p_i_d__controller.html#a02e58236aa27d35831a77f23c9ea2426", null ],
     [ "getDuty", "class_p_i_d__controller.html#a3a764e858ca617792fb63c8bd32939fc", null ],
     [ "setGains", "class_p_i_d__controller.html#a251f94097813c68fbb178ca50f8e1d1f", null ],

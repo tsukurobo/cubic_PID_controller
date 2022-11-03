@@ -2,7 +2,7 @@
 #include "Cubic1.7.h"
 #include <limits.h>
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.141;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.142;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;
@@ -47,15 +47,15 @@ public:
      *
      * @param encoder エンコーダーの参照。コンストラクタが呼び出される前にbegin()されている必要がある。（コンストラクタ呼び出し時に値を読み込む仕様のため）
      * @param motor モーターの参照。
-     * @param capableDuty 出力最大Duty比。0~255の範囲で指定する。
+     * @param capableDuty 出力最大Duty比（絶対値）。0~255の範囲で指定する。
      * @param Kp 比例ゲイン
      * @param Ki 積分ゲイン
      * @param Kd 微分ゲイン
      * @param target 目標回転速度。省略可能（デフォルトは0）
-     * @param direction エンコーダの回転方向。省略可能（デフォルトはtrue） falseにすると逆回転であるとして設定されます。
+     * @param encoderDirection モーターに正のdutyを与えて回した際に、エンコーダーの値がプラスになるかどうか。省略可能（デフォルトはtrue）
      * @param PPR エンコーダのPPR。省略可能（デフォルトは-1) -1は未設定を示します。
      */
-    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool direction = true, int PPR = -1);
+    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool encoderDirection = true, int PPR = -1);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
