@@ -36,7 +36,7 @@ int PID_controller::compute(const bool ifPut, const bool ifPrint)
 
   /* Compute duty */
   integral += (diff + preDiff) * dt / 2.0;
-  duty += Kp * diff + Ki * integral + Kd * (diff - preDiff) / dt;
+  duty = Kp * diff + Ki * integral + Kd * (diff - preDiff) / dt;
 
   duty = dutyLimiter();
 
