@@ -33,6 +33,7 @@ private:
     int capableDuty;
 
     int dutyLimiter();
+    bool isCapped = false;
 
     int encoderVal;
     int preEncoderVal;
@@ -133,7 +134,10 @@ inline int PID_controller::getDuty() const
 }
 inline int PID_controller::dutyLimiter()
 {
-    return duty = duty > capableDuty    ? capableDuty
-                  : duty < -capableDuty ? -capableDuty
-                                        : duty;
+    if(abs(duty)>capableDuty)
+        integral = 0;
+    duty = duty > capableDuty    ? capableDuty
+           : duty < -capableDuty ? -capableDuty
+                                 : duty;
+    return duty;
 }
