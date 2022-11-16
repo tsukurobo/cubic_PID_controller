@@ -32,7 +32,7 @@ private:
     int duty = 0;
     int capableDuty;
 
-    int dutyLimiter();
+    int dutyLimiter(); /* Limit the duty and reset integral if limited. */
     bool isCapped = false;
 
     int encoderVal;
@@ -135,7 +135,7 @@ inline int PID_controller::getDuty() const
 inline int PID_controller::dutyLimiter()
 {
     if(abs(duty)>capableDuty)
-        integral = 0;
+        integral = 0; // Anti-windup
     duty = duty > capableDuty    ? capableDuty
            : duty < -capableDuty ? -capableDuty
                                  : duty;
