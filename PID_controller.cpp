@@ -40,6 +40,8 @@ int PID_controller::compute(const bool ifPut, const bool ifPrint)
 
   duty = dutyLimiter();
 
+  preDiff = diff;
+
   if (ifPut)
   {
     motor.put(duty);
