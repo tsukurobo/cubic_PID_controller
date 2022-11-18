@@ -2,13 +2,15 @@
 
 このライブラリは、Cubic用のPID制御ライブラリです。
 
-バージョン0.142は、バージョン1.7のCubicに依存しています。
+バージョン1.7のCubicに依存しています。
 このバージョンはアルファ版です。
 
 [WEBドキュメント](https://hirokoni.github.io/cubic_PID_controller/html/)
 
 ## Update history
 
+- ver 0.16
+  - Anti-windupを導入。
 - ver 0.15
   - compute()内でpreDiffが更新されてなかったバグを修正。
 - ver 0.142
