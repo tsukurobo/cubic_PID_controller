@@ -2,7 +2,7 @@
 #include "Cubic1.7.h"
 #include <limits.h>
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.15;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.16;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;
@@ -32,7 +32,8 @@ private:
     int duty = 0;
     int capableDuty;
 
-    int dutyLimiter();
+    int dutyLimiter(); /* Limit the duty and reset integral if limited. */
+    bool isCapped = false;
 
     int encoderVal;
     int preEncoderVal;
@@ -133,7 +134,10 @@ inline int PID_controller::getDuty() const
 }
 inline int PID_controller::dutyLimiter()
 {
-    return duty = duty > capableDuty    ? capableDuty
-                  : duty < -capableDuty ? -capableDuty
-                                        : duty;
+    if(abs(duty)>capableDuty)
+        integral = 0; // Anti-windup
+    duty = duty > capableDuty    ? capableDuty
+           : duty < -capableDuty ? -capableDuty
+                                 : duty;
+    return duty;
 }
