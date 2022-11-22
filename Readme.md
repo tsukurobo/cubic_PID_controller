@@ -5,7 +5,7 @@
 バージョン1.7のCubicに依存しています。
 このバージョンはアルファ版です。
 
-[WEBドキュメント](https://hirokoni.github.io/cubic_PID_controller/html/)
+[WEBドキュメント](https://tsukurobo.github.io/cubic_PID_controller/html/)
 
 ## Update history
 
