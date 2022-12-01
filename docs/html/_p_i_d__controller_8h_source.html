@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.16</span>
+   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.20</span>
    </div>
   </td>
  </tr>
@@ -86,10 +86,10 @@ $(document).ready(function(){initNavTree('_p_i_d__controller_8h_source.html','')
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Cubic1.7.h&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;cubic.ver1.8.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;limits.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#define PID_CONTROLLER_LIBRARY_VERSION = 0.15;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#define PID_CONTROLLER_LIBRARY_VERSION = 0.20;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">constexpr</span> <span class="keywordtype">int</span> MAX_DUTY = 255;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">constexpr</span> <span class="keywordtype">int</span> MIN_DUTY = -255;</div>
@@ -122,8 +122,8 @@ $(document).ready(function(){initNavTree('_p_i_d__controller_8h_source.html','')
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> dutyLimiter(); <span class="comment">/* Limit the duty and reset integral if limited. */</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">bool</span> isCapped = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> encoderVal;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> preEncoderVal;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    int32_t encoderVal;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    int32_t preEncoderVal;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">int</span> PPR;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('_p_i_d__controller_8h_source.html','')
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_i_d__controller.html#a251f94097813c68fbb178ca50f8e1d1f">setGains</a>(<span class="keywordtype">double</span> Kp, <span class="keywordtype">double</span> Ki, <span class="keywordtype">double</span> Kd);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1">setTarget</a>(<span class="keywordtype">int</span> target);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce">setTarget</a>(<span class="keywordtype">double</span> target);</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_p_i_d__controller.html#a903d7d11544427bab0e2a600c10c3c49">setTargetRotationPerSecond</a>(<span class="keywordtype">double</span> target);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
@@ -151,7 +151,7 @@ $(document).ready(function(){initNavTree('_p_i_d__controller_8h_source.html','')
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    this-&gt;Ki = Ki;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    this-&gt;Kd = Kd;</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1">  116</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1">PID_controller::setTarget</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> target)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce">  116</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce">PID_controller::setTarget</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> target)</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    this-&gt;target = target;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
@@ -179,16 +179,16 @@ $(document).ready(function(){initNavTree('_p_i_d__controller_8h_source.html','')
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                                 : duty;</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordflow">return</span> duty;</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
-<div class="ttc" id="aclass_cubic__encoder_html"><div class="ttname"><a href="class_cubic__encoder.html">Cubic_encoder</a></div><div class="ttdef"><b>Definition:</b> Cubic1.7.h:21</div></div>
-<div class="ttc" id="aclass_cubic__motor_html"><div class="ttname"><a href="class_cubic__motor.html">Cubic_motor</a></div><div class="ttdef"><b>Definition:</b> Cubic1.7.h:35</div></div>
+<div class="ttc" id="aclass_cubic__encoder_html"><div class="ttname"><a href="class_cubic__encoder.html">Cubic_encoder</a></div><div class="ttdef"><b>Definition:</b> cubic.ver1.8.h:22</div></div>
+<div class="ttc" id="aclass_cubic__motor_html"><div class="ttname"><a href="class_cubic__motor.html">Cubic_motor</a></div><div class="ttdef"><b>Definition:</b> cubic.ver1.8.h:36</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html"><div class="ttname"><a href="class_p_i_d__controller.html">PID_controller</a></div><div class="ttdef"><b>Definition:</b> PID_controller.h:18</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a02e58236aa27d35831a77f23c9ea2426"><div class="ttname"><a href="class_p_i_d__controller.html#a02e58236aa27d35831a77f23c9ea2426">PID_controller::compute</a></div><div class="ttdeci">int compute(bool ifPut=true, bool ifPrint=false)</div><div class="ttdoc">制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。</div><div class="ttdef"><b>Definition:</b> PID_controller.cpp:12</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a17c26eee973adb4c05b4d3f3466e3984"><div class="ttname"><a href="class_p_i_d__controller.html#a17c26eee973adb4c05b4d3f3466e3984">PID_controller::PID_controller</a></div><div class="ttdeci">PID_controller(Cubic_encoder &amp;encoder, Cubic_motor &amp;motor, int capableDuty, double Kp, double Ki, double Kd, double target=0, bool encoderDirection=true, int PPR=-1)</div><div class="ttdoc">コントローラのコンストラクタ</div><div class="ttdef"><b>Definition:</b> PID_controller.cpp:3</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a18fed4b105c6d85c4f3b45b56be1f2da"><div class="ttname"><a href="class_p_i_d__controller.html#a18fed4b105c6d85c4f3b45b56be1f2da">PID_controller::setPPR</a></div><div class="ttdeci">void setPPR(int PPR)</div><div class="ttdoc">エンコーダの分解能を設定する</div><div class="ttdef"><b>Definition:</b> PID_controller.h:127</div></div>
+<div class="ttc" id="aclass_p_i_d__controller_html_a1f2ca28aacc86ef723e49967683365ce"><div class="ttname"><a href="class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce">PID_controller::setTarget</a></div><div class="ttdeci">void setTarget(double target)</div><div class="ttdoc">目標とする回転速度を変更する。</div><div class="ttdef"><b>Definition:</b> PID_controller.h:116</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a251f94097813c68fbb178ca50f8e1d1f"><div class="ttname"><a href="class_p_i_d__controller.html#a251f94097813c68fbb178ca50f8e1d1f">PID_controller::setGains</a></div><div class="ttdeci">void setGains(double Kp, double Ki, double Kd)</div><div class="ttdoc">ゲインを変更する。</div><div class="ttdef"><b>Definition:</b> PID_controller.h:110</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a3a764e858ca617792fb63c8bd32939fc"><div class="ttname"><a href="class_p_i_d__controller.html#a3a764e858ca617792fb63c8bd32939fc">PID_controller::getDuty</a></div><div class="ttdeci">int getDuty() const</div><div class="ttdoc">Duty比の取得</div><div class="ttdef"><b>Definition:</b> PID_controller.h:131</div></div>
 <div class="ttc" id="aclass_p_i_d__controller_html_a903d7d11544427bab0e2a600c10c3c49"><div class="ttname"><a href="class_p_i_d__controller.html#a903d7d11544427bab0e2a600c10c3c49">PID_controller::setTargetRotationPerSecond</a></div><div class="ttdeci">int setTargetRotationPerSecond(double target)</div><div class="ttdoc">目標とする回転速度を、秒間回転数で指定する。</div><div class="ttdef"><b>Definition:</b> PID_controller.h:120</div></div>
-<div class="ttc" id="aclass_p_i_d__controller_html_ab6180b7e05bbd9067240104c7b863ec1"><div class="ttname"><a href="class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1">PID_controller::setTarget</a></div><div class="ttdeci">void setTarget(int target)</div><div class="ttdoc">目標とする回転速度を変更する。</div><div class="ttdef"><b>Definition:</b> PID_controller.h:116</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

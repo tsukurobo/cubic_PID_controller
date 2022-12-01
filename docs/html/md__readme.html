@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.16</span>
+   <div id="projectname">PID Control Library for Cubic<span id="projectnumber">&#160;0.20</span>
    </div>
   </td>
  </tr>
@@ -86,11 +86,19 @@ $(document).ready(function(){initNavTree('md__readme.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >このライブラリは、Cubic用のPID制御ライブラリです。</p>
-<p >バージョン1.7のCubicに依存しています。 このバージョンはアルファ版です。</p>
-<p ><a href="https://hirokoni.github.io/cubic_PID_controller/html/">WEBドキュメント</a></p>
+<p >バージョン1.8のCubicライブラリに依存しています。</p>
+<p ><a href="https://tsukurobo.github.io/cubic_PID_controller/html/">WEBドキュメント</a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Update history</h1>
 <ul>
+<li>ver 0.20<ul>
+<li>Cubicライブラリの依存バージョンを1.8に更新 #3<ul>
+<li>エンコーダーの値の型をint32_tに変更</li>
+</ul>
+</li>
+<li>setTarget()の引数の型をdoubleに修正 #9</li>
+</ul>
+</li>
 <li>ver 0.16<ul>
 <li>Anti-windupを導入。</li>
 </ul>

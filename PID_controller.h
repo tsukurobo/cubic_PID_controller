@@ -1,8 +1,8 @@
 #pragma once
-#include "Cubic1.7.h"
+#include "cubic.ver1.8.h"
 #include <limits.h>
 
-#define PID_CONTROLLER_LIBRARY_VERSION = 0.16;
+#define PID_CONTROLLER_LIBRARY_VERSION = 0.20;
 
 constexpr int MAX_DUTY = 255;
 constexpr int MIN_DUTY = -255;
@@ -35,8 +35,8 @@ private:
     int dutyLimiter(); /* Limit the duty and reset integral if limited. */
     bool isCapped = false;
 
-    int encoderVal;
-    int preEncoderVal;
+    int32_t encoderVal;
+    int32_t preEncoderVal;
 
     int PPR;
 
@@ -81,7 +81,7 @@ public:
      *
      * @param target 回転速度（エンコーダーの分解能準拠）
      */
-    void setTarget(int target);
+    void setTarget(double target);
 
     /**
      * @brief 目標とする回転速度を、秒間回転数で指定する。
@@ -113,7 +113,7 @@ inline void PID_controller::setGains(const double Kp, const double Ki, const dou
     this->Ki = Ki;
     this->Kd = Kd;
 }
-inline void PID_controller::setTarget(const int target)
+inline void PID_controller::setTarget(const double target)
 {
     this->target = target;
 }
