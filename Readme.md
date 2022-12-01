@@ -9,6 +9,10 @@
 
 ## Update history
 
+- ver 0.20
+  - Cubicライブラリの依存バージョンを1.8に更新 #3
+    - エンコーダーの値の型をint32_tに変更
+  - setTarget()の引数の型をdoubleに修正 #9
 - ver 0.16
   - Anti-windupを導入。
 - ver 0.15
