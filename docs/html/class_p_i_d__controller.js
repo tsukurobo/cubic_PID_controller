@@ -5,6 +5,6 @@ var class_p_i_d__controller =
     [ "getDuty", "class_p_i_d__controller.html#a3a764e858ca617792fb63c8bd32939fc", null ],
     [ "setGains", "class_p_i_d__controller.html#a251f94097813c68fbb178ca50f8e1d1f", null ],
     [ "setPPR", "class_p_i_d__controller.html#a18fed4b105c6d85c4f3b45b56be1f2da", null ],
-    [ "setTarget", "class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1", null ],
+    [ "setTarget", "class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce", null ],
     [ "setTargetRotationPerSecond", "class_p_i_d__controller.html#a903d7d11544427bab0e2a600c10c3c49", null ]
 ];

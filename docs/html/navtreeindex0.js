@@ -1,6 +1,5 @@
 var NAVTREEINDEX0 =
 {
-"_cubic1_87_8h_source.html":[2,0,0],
 "_p_i_d__controller_8h_source.html":[2,0,1],
 "annotated.html":[1,0],
 "class_cubic__encoder.html":[1,0,0],
@@ -9,11 +8,12 @@ var NAVTREEINDEX0 =
 "class_p_i_d__controller.html#a02e58236aa27d35831a77f23c9ea2426":[1,0,2,1],
 "class_p_i_d__controller.html#a17c26eee973adb4c05b4d3f3466e3984":[1,0,2,0],
 "class_p_i_d__controller.html#a18fed4b105c6d85c4f3b45b56be1f2da":[1,0,2,4],
+"class_p_i_d__controller.html#a1f2ca28aacc86ef723e49967683365ce":[1,0,2,5],
 "class_p_i_d__controller.html#a251f94097813c68fbb178ca50f8e1d1f":[1,0,2,3],
 "class_p_i_d__controller.html#a3a764e858ca617792fb63c8bd32939fc":[1,0,2,2],
 "class_p_i_d__controller.html#a903d7d11544427bab0e2a600c10c3c49":[1,0,2,6],
-"class_p_i_d__controller.html#ab6180b7e05bbd9067240104c7b863ec1":[1,0,2,5],
 "classes.html":[1,1],
+"cubic_8ver1_88_8h_source.html":[2,0,0],
 "files.html":[2,0],
 "functions.html":[1,2,0],
 "functions_func.html":[1,2,1],

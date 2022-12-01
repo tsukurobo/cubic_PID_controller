@@ -2,8 +2,7 @@
 
 このライブラリは、Cubic用のPID制御ライブラリです。
 
-バージョン1.7のCubicに依存しています。
-このバージョンはアルファ版です。
+バージョン1.8のCubicライブラリに依存しています。
 
 [WEBドキュメント](https://tsukurobo.github.io/cubic_PID_controller/html/)
 
