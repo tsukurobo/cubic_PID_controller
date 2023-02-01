@@ -20,8 +20,8 @@ private:
     double Kp;
     double Ki;
     double Kd;
-    double dt;
     double target;
+    double diff;
     Cubic_encoder &encoder;
     Cubic_motor &motor;
 
@@ -43,6 +43,8 @@ private:
     bool direction;
 
 public:
+    double dt;
+
     /**
      * @brief コントローラのコンストラクタ
      *
@@ -65,7 +67,7 @@ public:
      * @param ifPrint 関数中で情報をSerial.print()するかどうか。省略可能（デフォルトはfalse）主にデバッグ時の使用を想定している。
      * @return int 計算されたduty比を返す。
      */
-    int compute(bool ifPut = true, bool ifPrint = false);
+    virtual int compute(bool ifPut = true, bool ifPrint = false);
 
     /**
      * @brief ゲインを変更する。
@@ -77,19 +79,19 @@ public:
     void setGains(double Kp, double Ki, double Kd);
 
     /**
-     * @brief 目標とする回転速度を変更する。
+     * @brief 目標を変更する。
      *
-     * @param target 回転速度（エンコーダーの分解能準拠）
+     * @param target 目標
      */
     void setTarget(double target);
 
     /**
-     * @brief 目標とする回転速度を、秒間回転数で指定する。
+     * @brief 目標を取得する。
      *
-     * @param target 回転速度（秒間回転数）
-     * @return int PPRが未設定のとき-1が返り、目標回転速度は変更されない。
+     * @return double 目標
      */
-    int setTargetRotationPerSecond(double target);
+    double getTarget() const;
+
 
     /**
      * @brief エンコーダの分解能を設定する
@@ -99,12 +101,63 @@ public:
     void setPPR(int PPR);
 
     /**
+     * @brief エンコーダの分解能を取得する
+     *
+     * @return int
+     */
+    int getPPR() const;
+
+    /**
+     * @brief エンコーダの値を取得する
+     *
+     * @return int
+     */
+    int32_t getEncoderVal();
+    /**
+     * @brief 前ループにおけるエンコーダの値を取得する
+     *
+     * @return int
+     */
+    int32_t getPreEncoderVal() const;
+
+    int32_t setPreEncoderVal(int32_t val);
+
+    double setDiff(double diff);
+
+    /**
      * @brief Duty比の取得
      * @details この関数は、compute()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
      *
      * @return int duty比
      */
     int getDuty() const;
+
+
+    int compute_PID(bool ifPut, bool ifPrint);
+};
+
+class PID_velocity_controller : public PID_controller
+{
+    public:
+    using PID_controller::PID_controller;
+
+    int compute(bool ifPut = true, bool ifPrint = false) override;
+
+    /**
+     * @brief 目標とする回転速度を、秒間回転数で指定する。
+     *
+     * @param target 回転速度（秒間回転数）
+     * @return int PPRが未設定のとき-1が返り、目標回転速度は変更されない。
+     */
+    int setTargetRotationPerSecond(double target);
+
+};
+
+class PID_position_controller : public PID_controller
+{
+    public:
+    using PID_controller::PID_controller;
+    int compute(bool ifPut = true, bool ifPrint = false) override;
 };
 
 inline void PID_controller::setGains(const double Kp, const double Ki, const double Kd)
@@ -117,16 +170,44 @@ inline void PID_controller::setTarget(const double target)
 {
     this->target = target;
 }
-inline int PID_controller::setTargetRotationPerSecond(const double target)
+inline int PID_velocity_controller::setTargetRotationPerSecond(const double target)
 {
+    int PPR=this->getPPR();
     if (PPR == -1)
         return -1;
-    this->target = target * PPR;
+    this->setTarget(target * PPR);
     return 0;
 }
 inline void PID_controller::setPPR(const int PPR)
 {
     this->PPR = PPR;
+}
+inline int PID_controller::getPPR() const
+{
+    return this->PPR;
+}
+inline int32_t PID_controller::getEncoderVal()
+{
+    encoder >> encoderVal;
+    return encoderVal;
+}
+inline int32_t PID_controller::getPreEncoderVal() const
+{
+    return preEncoderVal;
+}
+inline int32_t PID_controller::setPreEncoderVal(const int32_t val)
+{
+    preEncoderVal = val;
+    return preEncoderVal;
+}
+inline double PID_controller::setDiff(const double diff)
+{
+    this->diff = diff;
+    return this->diff;
+}
+inline double PID_controller::getTarget() const
+{
+    return this->target;
 }
 inline int PID_controller::getDuty() const
 {

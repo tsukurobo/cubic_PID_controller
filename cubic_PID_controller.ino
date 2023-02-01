@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "cubic.ver1.8.h"
 #include "PID_controller.h"
-#include "PID_position_controller.h"
 Cubic_encoder encoder;
 Cubic_motor motor;
 
@@ -14,7 +13,7 @@ void setup()
 
 void loop()
 {
-    static PID_controller controller(encoder, motor, 100, 0.002, 0.6, 0.0003, -5000.0, false, 512);
+    static PID_velocity_controller controller(encoder, motor, 100, 0.002, 0.6, 0.0003, -5000.0, false, 512);
     controller.compute(true, true);
     Cubic_motor::send();
 
