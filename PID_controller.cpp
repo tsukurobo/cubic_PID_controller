@@ -1,7 +1,10 @@
 #include "PID_controller.h"
 
-PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target, bool encoderDirection , int PPR)
-    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableDuty(abs(limitInPermitedDutyRange(capableDuty))), motor(motor), target(target), direction(encoderDirection), PPR(PPR)
+PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, unsigned int capableDuty, double Kp, double Ki, double Kd, double target, bool encoderDirection, int PPR)
+    : PID_controller(encoder, motor, capableDuty, -1 * capableDuty, Kp, Ki, Kd, target, encoderDirection, PPR) {}
+
+PID_controller::PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableMaxDuty, int capableMinDuty, double Kp, double Ki, double Kd, double target, bool encoderDirection, int PPR)
+    : Kp(Kp), Ki(Ki), Kd(Kd), encoder(encoder), capableMaxDuty(limitInPermitedDutyRange(capableMaxDuty)), capableMinDuty(min(limitInPermitedDutyRange(capableMinDuty), this->capableMaxDuty)), motor(motor), target(target), direction(encoderDirection), PPR(PPR)
 {
   preMicros = micros();
   preDiff = 0;
@@ -30,8 +33,9 @@ int PID_controller::compute(const bool ifPut, const bool ifPrint)
   double diff = target - velocity;
   preEncoderVal = encoderVal;
 
-  if(!direction){
-  diff *= -1.0;
+  if (!direction)
+  {
+    diff *= -1.0;
   }
 
   /* Compute duty */

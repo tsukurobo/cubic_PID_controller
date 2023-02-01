@@ -30,7 +30,8 @@ private:
     unsigned long preMicros;
 
     int duty = 0;
-    int capableDuty;
+    const int capableMaxDuty;
+    const int capableMinDuty;
 
     int dutyLimiter(); /* Limit the duty and reset integral if limited. */
     bool isCapped = false;
@@ -56,7 +57,23 @@ public:
      * @param encoderDirection モーターに正のdutyを与えて回した際に、エンコーダーの値がプラスになるかどうか。省略可能（デフォルトはtrue）
      * @param PPR エンコーダのPPR。省略可能（デフォルトは-1) -1は未設定を示します。
      */
-    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool encoderDirection = true, int PPR = -1);
+    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, unsigned int capableDuty, double Kp, double Ki, double Kd, double target = 0, bool encoderDirection = true, int PPR = -1);
+
+    /**
+     * @brief コントローラのコンストラクタ
+     *
+     * @param encoder エンコーダーの参照。コンストラクタが呼び出される前にbegin()されている必要がある。（コンストラクタ呼び出し時に値を読み込む仕様のため）
+     * @param motor モーターの参照。
+     * @param capableMaxDuty 出力最大Duty比。絶対値255以下の範囲で指定する。
+     * @param capableMinDuty 出力最大Duty比。絶対値255以下の範囲で指定する。capbaleMaxDutyよりも大きい場合、capableMaxDutyと同じ値として扱われる。
+     * @param Kp 比例ゲイン
+     * @param Ki 積分ゲイン
+     * @param Kd 微分ゲイン
+     * @param target 目標回転速度。省略可能（デフォルトは0）
+     * @param encoderDirection モーターに正のdutyを与えて回した際に、エンコーダーの値がプラスになるかどうか。省略可能（デフォルトはtrue）
+     * @param PPR エンコーダのPPR。省略可能（デフォルトは-1) -1は未設定を示します。
+     */
+    PID_controller(Cubic_encoder &encoder, Cubic_motor &motor, int capableMaxDuty, int capableMinDuty, double Kp, double Ki, double Kd, double target = 0, bool encoderDirection = true, int PPR = -1);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
@@ -134,10 +151,10 @@ inline int PID_controller::getDuty() const
 }
 inline int PID_controller::dutyLimiter()
 {
-    if(abs(duty)>capableDuty)
+    if (duty > capableMaxDuty||duty<capableMinDuty)
         integral = 0; // Anti-windup
-    duty = duty > capableDuty    ? capableDuty
-           : duty < -capableDuty ? -capableDuty
+    duty = duty > capableMaxDuty    ? capableMaxDuty
+           : duty < capableMinDuty ? -capableMinDuty
                                  : duty;
     return duty;
 }
