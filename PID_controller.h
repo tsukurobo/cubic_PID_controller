@@ -67,7 +67,7 @@ public:
      * @param ifPrint 関数中で情報をSerial.print()するかどうか。省略可能（デフォルトはfalse）主にデバッグ時の使用を想定している。
      * @return int 計算されたduty比を返す。
      */
-    virtual int compute(bool ifPut = true, bool ifPrint = false);
+    virtual int compute(bool ifPut = true, bool ifPrint = false){}
 
     /**
      * @brief ゲインを変更する。
@@ -159,6 +159,7 @@ class PID_position_controller : public PID_controller
     using PID_controller::PID_controller;
     int compute(bool ifPut = true, bool ifPrint = false) override;
 };
+
 
 inline void PID_controller::setGains(const double Kp, const double Ki, const double Kd)
 {
