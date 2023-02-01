@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "cubic.ver1.8.h"
 #include "PID_controller.h"
+#include "PID_position_controller.h"
 Cubic_encoder encoder;
 Cubic_motor motor;
 
