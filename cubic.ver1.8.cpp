@@ -11,7 +11,7 @@
 //g_buf[0] = モーター0の方向(1or2)及びパリティー値
 //g_buf[1] = モーター1~7の方向が一ビットづつ格納(モーター7の値は最下位2ビット使用 　正回転で0、負回転で
 uint8_t g_buf[10];//RP2040への送信データを格納する配列。
-uint8_t g_currentpin[16] = {A0,A3,A6,A5,A10,A8,A14,A12,A13,A15,A9,A11,A1,A7,A4,A2}; //各モータに対応する電流センサの入力アナログピン
+//uint8_t g_currentpin[16] = {A0,A3,A6,A5,A10,A8,A14,A12,A13,A15,A9,A11,A1,A7,A4,A2}; //各モータに対応する電流センサの入力アナログピン
 
 
 SPISettings mySPISettings = SPISettings(4000000, MSBFIRST, SPI_MODE0);
