@@ -1,5 +1,7 @@
 # Readme
 
+*Due to breaking changes in Cubic, this library is outdated.*
+
 このライブラリは、Cubic用のPID制御ライブラリです。
 
 バージョン1.8のCubicライブラリに依存しています。
